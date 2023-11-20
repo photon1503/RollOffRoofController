@@ -1,0 +1,42 @@
+//@IP = 10.0.10.160:4567
+@IP = 192.168.1.160:4567
+@BaseURL = http://{{IP}}/api/v1/dome/0
+@MgmtURL = http://{{IP}}/management
+
+###
+GET {{MgmtURL}}/apiversions
+
+###
+GET {{MgmtURL}}/v1/description
+
+###
+GET {{MgmtURL}}/v1/configureddevices
+###
+GET {{BaseURL}}/connected
+###
+GET {{BaseURL}}/driverinfo
+###
+GET {{BaseURL}}/description
+###
+GET {{BaseURL}}/driverversion
+
+###
+GET {{BaseURL}}/name
+###
+GET {{BaseURL}}/interfaceversion
+
+###
+GET {{BaseURL}}/supportedactions
+
+###
+GET {{BaseURL}}/foo
+
+###
+GET {{BaseURL}}/slewing
+###
+###
+GET {{BaseURL}}/shutterstatus
+###
+PUT {{BaseURL}}/closeshutter
+###
+PUT {{BaseURL}}/openshutter
