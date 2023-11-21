@@ -19,4 +19,5 @@ https://www.circuito.io/app?components=513,360217,653574,653574,3061987
 * [ASCOM Alpaca API](https://ascom-standards.org/api/#/)
 * [ASCOM Alpaca Management API](https://ascom-standards.org/api/?urls.primaryName=ASCOM%20Alpaca%20Management%20API#/Management%20Interface%20(JSON)/get_management_v1_configureddevices)
 * [How to use ASCOM Alpaca for ESP32](https://github.com/DanielVanNoord/AlpacaDiscoveryTests/tree/master)
+* [ESP UI](https://github.com/s00500/ESPUI)
 

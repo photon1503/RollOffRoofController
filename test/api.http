@@ -32,8 +32,11 @@ GET {{BaseURL}}/supportedactions
 GET {{BaseURL}}/foo
 
 ###
-GET {{BaseURL}}/slewing
+GET {{BaseURL}}/synctoazimuth
 ###
+
+###
+GET {{BaseURL}}/shutterstatus
 ###
 GET {{BaseURL}}/shutterstatus
 ###
