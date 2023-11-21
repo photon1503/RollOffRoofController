@@ -6,8 +6,10 @@
 #include <WiFi.h>
 #include "ui.h"
 #include "control.h"
+#include "prefs.h"
 #include "alpaca.h"
 #include "secrets.h"
+
 
 const char *SSID = "x3";
 const char *PWD = pass;
@@ -34,13 +36,12 @@ void connectToWiFi()
 void setup()
 {
   Serial.begin(9600);
+  delay(250);
+  startupPreferences();
   connectToWiFi();
-
   setup_routing();
   setupUI();
-
-  autodiscovery();
- 
+  autodiscovery(); 
 }
 
 void loop()

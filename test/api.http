@@ -1,5 +1,5 @@
 //@IP = 10.0.10.160:4567
-@IP = 192.168.1.160:4567
+@IP = 192.168.1.160:4570
 @BaseURL = http://{{IP}}/api/v1/dome/0
 @MgmtURL = http://{{IP}}/management
 
@@ -32,7 +32,6 @@ GET {{BaseURL}}/supportedactions
 GET {{BaseURL}}/synctoazimuth
 ###
 
-###
 GET {{BaseURL}}/shutterstatus
 ###
 PUT {{BaseURL}}/closeshutter

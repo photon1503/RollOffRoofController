@@ -1,9 +1,10 @@
 #include <ESPUI.h>
 #include "control.h"
+#include "prefs.h"
 
 int statusLabelId;
 int panel1;
-uint16_t UIalpacaPort;
+uint16_t UIalpacaPort, UIdeviceID;
 
 void openButtonCallback(Control *sender, int type)
 {
@@ -55,7 +56,23 @@ void updateRoofStatus()
     ESPUI.updateText(statusLabelId, getRoofStatus());
 }
 
+void callbackAlpacaPort(Control *sender, int type)
+{
+    String s = sender->value;
+    setAlpacaPort(s.toInt());
+}
 
+void callbackDeviceID(Control *sender, int type)
+{
+    String s = sender->value;
+    setDeviceID(s.toInt());
+}
+
+
+void rebootButtonCallback(Control *sender, int type)
+{
+    ESP.restart();
+}
 
 void setupUIControl()
 {
@@ -67,10 +84,14 @@ void setupUIControl()
     ESPUI.addControl(ControlType::Button, "", "Stop", ControlColor::Carrot, panel1, stopButtonCallback);
     ESPUI.addControl(ControlType::Button, "", "Close", ControlColor::None, panel1, closeButtonCallback);
 }
+
 void setupUISetup()
 {
     auto setupTab = ESPUI.addControl(Tab, "", "Setup");
-    UIalpacaPort = ESPUI.addControl(ControlType::Number, "Alpaca Port", "12345", ControlColor::None, setupTab);
+    UIalpacaPort = ESPUI.addControl(ControlType::Number, "Alpaca Port", String(getAlpacaPort()), ControlColor::None, setupTab, callbackAlpacaPort);
+    UIdeviceID = ESPUI.addControl(ControlType::Number, "Device ID", String(getDeviceID()), ControlColor::None, setupTab, callbackDeviceID);
+
+    ESPUI.addControl(ControlType::Button, "", "Reboot", ControlColor::Carrot, setupTab, rebootButtonCallback);
 }
 
 void setupUI()

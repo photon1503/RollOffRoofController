@@ -2,14 +2,16 @@
 #include <WebServer.h>
 #include "AsyncUDP.h"
 #include "control.h"
+#include "prefs.h"
 
 const char *version = "1.0.0.0";
 const char *name = "RolloffRoofController";
 
 unsigned const int localPort = 32227; // The Alpaca Discovery test port
-unsigned const int alpacaPort = 4567; // The (fake) port that the Alpaca API would be available on
+unsigned int alpacaPort = getAlpacaPort();
+unsigned const int deviceID = 0;
 
-String apiBase = "/api/v1/dome/0/";
+
 
 WebServer server(alpacaPort);
 
@@ -155,7 +157,7 @@ void mgmtConfigureddevices()
     JsonObject Value = array.createNestedObject();
     Value["DeviceName"] = name;
     Value["DeviceType"] = "Dome";
-    Value["DeviceNumber"] = 0;
+    Value["DeviceNumber"] = getDeviceID();
     Value["UniqueID"] = "3b1ecc17-38b0-4179-9e04-09dd07a285eb";
 
     responseCommon();
@@ -163,6 +165,8 @@ void mgmtConfigureddevices()
 
 void setup_routing()
 {
+    String apiBase = "/api/v1/dome/" + String(getDeviceID()) + "/";
+
     server.on("/management/apiversions", apiversions);
     server.on("/management/v1/description", mgmtDescription);
     server.on("/management/v1/configureddevices", mgmtConfigureddevices);
@@ -205,7 +209,13 @@ void setup_routing()
     server.on(apiBase + "setpark", respondNotImplemented);
 
     // start server
-    server.begin();
+    server.begin(getAlpacaPort());
+    Serial.print("Alpaca API listening on port ");
+    Serial.println(getAlpacaPort());
+
+    Serial.print("Alpaca API Base URL is ");
+    Serial.println(apiBase);
+
 }
 
 void autodiscovery()
@@ -248,6 +258,8 @@ void autodiscovery()
             packet.printf("{\"AlpacaPort\": %d}", alpacaPort); });
     }
 }
+
+
 void handle()
 {
     server.handleClient();
