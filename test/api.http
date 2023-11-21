@@ -29,14 +29,9 @@ GET {{BaseURL}}/interfaceversion
 GET {{BaseURL}}/supportedactions
 
 ###
-GET {{BaseURL}}/foo
-
-###
 GET {{BaseURL}}/synctoazimuth
 ###
 
-###
-GET {{BaseURL}}/shutterstatus
 ###
 GET {{BaseURL}}/shutterstatus
 ###

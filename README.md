@@ -6,8 +6,8 @@ ESP32 based standalone controller for a roll off roof observatory.
 
 *Features*
 - :llama: ASCOM Alpaca compatible Dome API
-- :crystal_ball: ASCOM Alpaca autodiscovery
-- *TODO* :iphone: Web interface for setup and control
+- :crystal_ball: ASCOM Alpaca device autodiscovery
+- :iphone: Web interface for setup and control
 
 ## Hardware
 
