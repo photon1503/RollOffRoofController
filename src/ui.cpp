@@ -8,17 +8,29 @@ uint16_t UIalpacaPort, UIdeviceID;
 
 void openButtonCallback(Control *sender, int type)
 {
-    openShutter();
+    if (type == B_DOWN)
+    {
+        Serial.println("openButtonCallback");
+        openShutter();
+    }
 }
 
 void stopButtonCallback(Control *sender, int type)
 {
-    abortSlew();
+    if (type == B_DOWN)
+    {
+        Serial.println("stopButtonCallback");
+        abortSlew();
+    }
 }
 
 void closeButtonCallback(Control *sender, int type)
 {
-    closeShutter();
+    if (type == B_DOWN)
+    {
+        Serial.println("closeButtonCallback");
+        closeShutter();
+    }
 }
 
 void updateText(String status)
@@ -58,16 +70,17 @@ void updateRoofStatus()
 
 void callbackAlpacaPort(Control *sender, int type)
 {
+
     String s = sender->value;
     setAlpacaPort(s.toInt());
 }
 
 void callbackDeviceID(Control *sender, int type)
 {
+
     String s = sender->value;
     setDeviceID(s.toInt());
 }
-
 
 void rebootButtonCallback(Control *sender, int type)
 {

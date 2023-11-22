@@ -36,7 +36,8 @@ void connectToWiFi()
 void setup()
 {
   Serial.begin(9600);
-  delay(250);
+  digitalWrite(16,HIGH);  //Initialize Pins so relays are inactive at reset)
+  pinMode(16, OUTPUT);
   startupPreferences();
   connectToWiFi();
   setup_routing();
